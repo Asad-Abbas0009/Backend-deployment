@@ -16,24 +16,6 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-wss.on('connection', (ws) => {
-    console.log('New client connected');
-
-    ws.send(JSON.stringify({ message: 'Welcome to WebSocket server!' }));
-
-    ws.on('message', (message) => {
-        console.log(`Received: ${message}`);
-        ws.send(JSON.stringify({ message: `Echo: ${message}` }));
-    });
-
-    ws.on('close', () => {
-        console.log('Client disconnected');
-    });
-});
-
-server.listen(5000, () => {
-    console.log('WebSocket server running on ws://localhost:5000');
-});
 
 app.use(cors());
 app.use(bodyParser.json());
